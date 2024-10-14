@@ -74,6 +74,8 @@ This `.env` file helps keep sensitive information out of your codebase, making i
 
 ## Functionality
 
+>**NOTE** : For a detailed, line-by-line explanation of the code, please refer to the inline comments provided in the `main.go` file.
+
 ### 1. Posting a Tweet
 The program allows users to post a new tweet by providing the tweet content through the console. It sends a JSON payload containing the tweet content to the Twitter API using a POST request. If successful, the tweet's ID is returned and displayed.
 
