@@ -4,7 +4,7 @@ import (
 	"bufio" // provides buffered I/O ops, allows reading inputs from users
 	"fmt"
 	"os"
-	"strings" // provides funcs to manipulate string values
+	"strings" // provides funcs to manipulate string values	
 )
 
 func main() {
@@ -22,7 +22,7 @@ func main() {
 	fmt.Print("Enter your choice: ")
 
 	// Read user input
-	choice, _ := reader.ReadString('\n') // this method reads until a newlice char and saved in var choice
+	choice, _ := reader.ReadString('\n') // this method reads until a newline char and saved in var choice
 	choice = strings.TrimSpace(choice)   // the input which is saved in choice is trimmed
 
 	// Handle user's choice using a switch statement
@@ -37,7 +37,6 @@ func main() {
 		// Post the tweet and store its ID
 		fmt.Println("Posting a new tweet...")
 		tweetID := createTweet(tweetContent)
-
 		fmt.Printf("Tweet posted with ID: %s\n", tweetID)
 
 	case "2":

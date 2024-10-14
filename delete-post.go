@@ -10,16 +10,13 @@ import (
 	"github.com/joho/godotenv"
 )
 
-// function to load the .env file
-func init() {
+// Function to delete a tweet by its ID
+func deleteTweet(tweetID string) {
+
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatalf("Error loading .env file")
 	}
-}
-
-// Function to delete a tweet by its ID
-func deleteTweet(tweetID string) {
 
 	// Load Twitter API keys from environment variables
 	config := oauth1.NewConfig(os.Getenv("API_KEY"), os.Getenv("API_SECRET_KEY"))

@@ -1,11 +1,11 @@
-package main // indicates that this is the main package of the program
+package main
 
 import ( //imports packages needed for the program
 	// bytes and encoding/json for data-->JSON
 	"bytes"
 	"encoding/json"
-	"io" // basic i/o funcs
 	"fmt"      // provides funcs for formatting strings
+	"io"       // basic i/o funcs
 	"log"      //provides logging func for errors
 	"net/http" // Allows us to make http requests
 	"os"       // Provides funcs to interact with the OS, allows access to env variables and handles i/o
@@ -14,19 +14,15 @@ import ( //imports packages needed for the program
 	"github.com/joho/godotenv"   // Reads env variables from a .env file
 )
 
-// function to load the .env file
-// init() - special func in Go that runs before the main(), used here to load env variables
-func init() {
+// Function to create a new tweet
+func createTweet(tweetContent string) string {
+
 	// godotenv.Load(): reads env vars from a .env file [ensuring secure storage and access to our API keys & tokens]
 	err := godotenv.Load() // thus, makes the env vars accessible within the GO program
 	// Logs an error message and stops the program if the .env file has errors
 	if err != nil {
 		log.Fatalf("Error loading .env file")
 	}
-}
-
-// Function to create a new tweet
-func createTweet(tweetContent string) string {
 
 	// Load Twitter API keys from environment variables
 	// OAuth1 setup with credentials
@@ -72,8 +68,8 @@ func createTweet(tweetContent string) string {
 	// Read the response body
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-        log.Fatalf("Error reading response body: %v", err)
-    }
+		log.Fatalf("Error reading response body: %v", err)
+	}
 
 	defer resp.Body.Close() // ensures the the resp body is closed after reading and freeing the resources
 
@@ -85,16 +81,16 @@ func createTweet(tweetContent string) string {
 	}
 
 	// Parse the response to extract the tweet ID
-    var responseData map[string]interface{} // declares a map to store the parsed JSON response. The map's keys are strings, and the values can be of any type (interface{}).
-    if err := json.Unmarshal(body, &responseData); err != nil { // json.unmarshal(): converts response in JSON --> map in responseData
-        log.Fatalf("Error parsing JSON response: %v", err)
-    }
+	var responseData map[string]interface{}                     // declares a map to store the parsed JSON response. The map's keys are strings, and the values can be of any type (interface{}).
+	if err := json.Unmarshal(body, &responseData); err != nil { // json.unmarshal(): converts response in JSON --> map in responseData
+		log.Fatalf("Error parsing JSON response: %v", err)
+	}
 
 	// Extract the tweet ID from the response
-    tweetID, ok := responseData["data"].(map[string]interface{})["id"].(string)
-    if !ok {
-        log.Fatalf("Error extracting tweet ID from response")
-    }
+	tweetID, ok := responseData["data"].(map[string]interface{})["id"].(string)
+	if !ok {
+		log.Fatalf("Error extracting tweet ID from response")
+	}
 
-    return tweetID
+	return tweetID
 }
