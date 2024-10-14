@@ -128,8 +128,6 @@ The application includes robust error handling to ensure smooth user experience:
 twitter-api-interaction/
 │
 ├── main.go               # Entry point of the program
-├── create-post.go        # Handles tweet creation logic
-├── delete-post.go        # Handles tweet deletion logic
 ├── .env                  # Stores environment variables (not included in the repo)
 ├── README.md             # Documentation of the project
 ├── go.mod                # Module dependencies
