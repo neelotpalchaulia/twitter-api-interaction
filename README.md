@@ -48,6 +48,8 @@ ACCESS_TOKEN_SECRET=your_access_token_secret
 
 This `.env` file helps keep sensitive information out of your codebase, making it easier to manage and share your project.
 
+>**NOTE**: Alternatively, you can also add them to your GitHub repository's secrets for production purposes.
+
 ## Running the Application
 
 1. **Clone the Repository**:
